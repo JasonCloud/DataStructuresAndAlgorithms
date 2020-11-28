@@ -1,0 +1,8 @@
+.idea/
+
+# Editor directories and files
+.idea
+.vscode
+.DS_Store
+node_modules/
+
