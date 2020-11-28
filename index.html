@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="./dist/linkList.js"></script>
+<script src="./dist/DoubleLinkedList.js"></script>
+<script src="./dist/CircularLinkedList.js"></script>
+<script src="./dist/SortLinkedList.js"></script>
+<script src="./dist/MySet.js"></script>
+<script>
+    const linkedList = new LinkedList();
+	linkedList.append({val:0});
+	linkedList.append({val:1});
+	linkedList.append({val:2});
+	linkedList.append({val:3});
+	linkedList.append({val:4});
+	linkedList.append({val:5});
+	console.log(linkedList, '=====')
+    // console.log(linkedList.removeAt(5));
+    // console.log(linkedList);
+    const doubleLinkList = new DoubleLinkedList()
+    console.log(doubleLinkList)
+    const circularLinkedList = new CircularLinkedList();
+    const sortLinkedList = new SortLinkedList();
+    const mySet = new MySet();
+</script>
+</html>
