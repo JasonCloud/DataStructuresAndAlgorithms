@@ -22,3 +22,13 @@ export function defaultCompare(a, b) {
 		return COMPARE.BIGGER_THAN;
 	}
 }
+export function	keyToString(str) {
+	if (str === null) {
+		return 'null';
+	} else if (str === undefined) {
+		return 'undefined';
+	} else if(typeof str === 'function') {
+		return str.toString();
+	}
+	return JSON.stringify(str)
+}

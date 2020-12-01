@@ -5,6 +5,8 @@
  * @LastEditors:
  * @LastEditTime: 2020/11/26
  */
+import {keyToString} from "./util";
+
 export default class MySet {
 	constructor() {
 		this.items = {};
@@ -25,14 +27,7 @@ export default class MySet {
 		return false;
 	}
 	keyToString(str) {
-		if (str === null) {
-			return 'null';
-		} else if (str === undefined) {
-			return 'undefined';
-		} else if(typeof str === 'function') {
-			return str.toString();
-		}
-		return JSON.stringify(str)
+		return keyToString(str);
 	}
 	has(element) {
 		return Object.prototype.hasOwnProperty.call(this.items, this.keyToString(element));
