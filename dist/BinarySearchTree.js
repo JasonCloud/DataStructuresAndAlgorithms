@@ -88,6 +88,18 @@
 	    }
 	  }
 
+	  inOrderTraverse(callback) {
+	    this.inOrderTraverseNode(this.root, callback);
+	  }
+
+	  inOrderTraverseNode(node, callback) {
+	    if (node) {
+	      this.inOrderTraverseNode(node.left, callback);
+	      callback(node.key);
+	      this.inOrderTraverseNode(node.right, callback);
+	    }
+	  }
+
 	  search(key) {
 	    if (!this.root) {
 	      return -1;
