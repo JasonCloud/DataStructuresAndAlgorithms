@@ -49,6 +49,11 @@
 	 * @LastEditors:
 	 * @LastEditTime: 2020/12/2
 	 */
+	const COMPARE$1 = {
+	  EQUAL: 0,
+	  LESS_THAN: -1,
+	  BIGGER_THAN: 1
+	};
 	class BinarySearchTree {
 	  constructor(compareFn = defaultCompare) {
 	    this.compareFn = compareFn;
@@ -56,10 +61,36 @@
 	  }
 
 	  insert(key) {
-	    let node = new TreeNode(key);
-
 	    if (!this.root) {
-	      this.root = node;
+	      this.root = new TreeNode(key);
+	    } else {
+	      this.inertNode(this.root, key);
+	    }
+	  }
+
+	  inertNode(node, key) {
+	    if (this.compareFn(key, node.key) === COMPARE$1.LESS_THAN) {
+	      const leftNode = node.left;
+
+	      if (!leftNode) {
+	        node.left = new TreeNode(key);
+	      } else {
+	        this.inertNode(leftNode, key);
+	      }
+	    } else {
+	      const rightNode = node.right;
+
+	      if (!rightNode) {
+	        node.right = new TreeNode(key);
+	      } else {
+	        this.inertNode(rightNode, key);
+	      }
+	    }
+	  }
+
+	  search(key) {
+	    if (!this.root) {
+	      return -1;
 	    }
 	  }
 
