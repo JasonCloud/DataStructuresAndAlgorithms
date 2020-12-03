@@ -125,11 +125,87 @@
 	      this.postOrderTraverseNode(node.right, callback);
 	      callback(node.key);
 	    }
+	  } // 最小值
+
+
+	  min() {
+	    return this.minNode(this.root);
+	  }
+
+	  minNode(node) {
+	    while (node && node.left) {
+	      node = node.left;
+	    }
+
+	    return node;
+	  } // 最大值
+
+
+	  max() {
+	    return this.maxNode(this.root);
+	  }
+
+	  maxNode(node) {
+	    while (node && node.right) {
+	      node = node.right;
+	    }
+
+	    return node;
 	  }
 
 	  search(key) {
-	    if (!this.root) {
-	      return -1;
+	    return this.searchNode(this.root, key);
+	  }
+
+	  searchNode(node, key) {
+	    if (node) {
+	      if (this.compareFn(key, node.key) === COMPARE$1.LESS_THAN) {
+	        return this.searchNode(node.left, key);
+	      } else if (this.compareFn(key, node.key) === COMPARE$1.BIGGER_THAN) {
+	        return this.searchNode(node.right, key);
+	      } else {
+	        return true;
+	      }
+	    }
+
+	    return false;
+	  }
+
+	  remove(key) {
+	    this.root = this.removeNode(this.root, key);
+	  }
+
+	  removeNode(node, key) {
+	    if (!node) {
+	      return null;
+	    }
+
+	    if (this.compareFn(key, node.key) === COMPARE$1.LESS_THAN) {
+	      node.left = this.removeNode(node.left, key);
+	      return node;
+	    } else if (this.compareFn(key, node.key) === COMPARE$1.BIGGER_THAN) {
+	      node.right = this.removeNode(node.right, key);
+	      return node;
+	    } else {
+	      if (!node.left && !node.right) {
+	        node = null;
+	        return node;
+	      }
+
+	      if (!node.left) {
+	        node = node.right;
+	        return node;
+	      }
+
+	      if (!node.right) {
+	        node = node.left;
+	        return node;
+	      }
+
+	      let minNode = this.minNode(node.right);
+	      node.key = minNode.key;
+	      node.right = this.removeNode(node.right, minNode.key);
+	      return node;
 	    }
 	  }
 
