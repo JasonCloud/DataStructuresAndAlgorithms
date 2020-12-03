@@ -42,6 +42,7 @@ export default class BinarySearchTree {
 			}
 		}
 	}
+	// 中序
 	inOrderTraverse(callback) {
 		this.inOrderTraverseNode(this.root, callback);
 	}
@@ -50,6 +51,28 @@ export default class BinarySearchTree {
 			this.inOrderTraverseNode(node.left, callback);
 			callback(node.key);
 			this.inOrderTraverseNode(node.right, callback);
+		}
+	}
+	// 先序
+	prevOrderTraverse(callback){
+		this.prevOrderTraverseNode(this.root, callback);
+	}
+	prevOrderTraverseNode(node, callback){
+		if (node) {
+			callback(node.key);
+			this.prevOrderTraverseNode(node.left, callback);
+			this.prevOrderTraverseNode(node.right, callback);
+		}
+	}
+	// 后序
+	postOrderTraverse(callback){
+		this.postOrderTraverseNode(this.root, callback);
+	}
+	postOrderTraverseNode(node, callback){
+		if (node) {
+			this.postOrderTraverseNode(node.left, callback);
+			this.postOrderTraverseNode(node.right, callback);
+			callback(node.key);
 		}
 	}
 	search(key) {
