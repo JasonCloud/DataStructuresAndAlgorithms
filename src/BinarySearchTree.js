@@ -22,23 +22,23 @@ export default class BinarySearchTree {
 		if (!this.root) {
 			this.root = new TreeNode(key);
 		} else {
-			this.inertNode(this.root, key);
+			this.insertNode(this.root, key);
 		}
 	}
-	inertNode(node, key) {
+	insertNode(node, key) {
 		if (this.compareFn(key, node.key) === COMPARE.LESS_THAN) {
 			const leftNode = node.left;
 			if (!leftNode) {
 				node.left = new TreeNode(key);
 			} else {
-				this.inertNode(leftNode, key);
+				this.insertNode(leftNode, key);
 			}
 		} else {
 			const rightNode = node.right;
 			if (!rightNode) {
 				node.right = new TreeNode(key);
 			} else {
-				this.inertNode(rightNode, key);
+				this.insertNode(rightNode, key);
 			}
 		}
 	}

@@ -1,12 +1,12 @@
 import babel from 'rollup-plugin-babel'
 import serve from 'rollup-plugin-serve'
 export default {
-	input: 'src/BinarySearchTree.js',
+	input: 'src/AVLTree.js',
 	output: {
 		format: 'umd',
 		sourcemap: true,
-		name: 'BinarySearchTree',
-		file: 'dist/BinarySearchTree.js'
+		name: 'AVLTree',
+		file: 'dist/AVLTree.js'
 	},
 	plugins: [
 		babel({
