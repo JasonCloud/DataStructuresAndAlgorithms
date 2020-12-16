@@ -1,12 +1,12 @@
 import babel from 'rollup-plugin-babel'
 import serve from 'rollup-plugin-serve'
 export default {
-	input: 'src/AVLTree.js',
+	input: 'src/algorithms/sorting/heapSort.js',
 	output: {
 		format: 'umd',
 		sourcemap: true,
-		name: 'AVLTree',
-		file: 'dist/AVLTree.js'
+		name: 'heapSort',
+		file: 'dist/heapSort.js'
 	},
 	plugins: [
 		babel({

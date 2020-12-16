@@ -235,6 +235,7 @@
 	    super(compareFn);
 	    this.compareFn = compareFn;
 	    this.root = null;
+	    this.count = null;
 	  }
 
 	  getNodeHeight(node) {
@@ -292,6 +293,10 @@
 	    return this.rotationRR(node); // 再对整个失去平衡的树进行右旋转
 	  }
 
+	  insert(key) {
+	    this.root = this.insertNode(this.root, key);
+	  }
+
 	  insertNode(node, key) {
 	    if (!node) {
 	      // 说明已经到了叶节点没有下一个节点了，这个时候可以创建一个新节点作为上一个节点的子节点
@@ -339,6 +344,34 @@
 	    if (!node) {
 	      return node; // 不需要调整平衡；
 	    }
+
+	    const balanceFactor = this.getBalanceFactor(node);
+
+	    if (balanceFactor === BALANCEFACTOR.UNBALANCED_LEFT) {
+	      const balanceFactorLeft = this.getBalanceFactor(node.left);
+
+	      if (balanceFactorLeft === BALANCEFACTOR.BALANCED || balanceFactorLeft === BALANCEFACTOR.SLIGHTLY_UNBALANCED_LEFT) {
+	        return this.rotationLL(node);
+	      }
+
+	      if (balanceFactorLeft === BALANCEFACTOR.SLIGHTLY_UNBALANCED_RIGHT) {
+	        return this.rotationLR(node.left);
+	      }
+	    }
+
+	    if (balanceFactor === BALANCEFACTOR.UNBALANCED_RIGHT) {
+	      const balanceFactorRight = this.getBalanceFactor(node.right);
+
+	      if (balanceFactorRight === BALANCEFACTOR.BALANCED || balanceFactorRight === BALANCEFACTOR.SLIGHTLY_UNBALANCED_RIGHT) {
+	        return this.rotationRR(node);
+	      }
+
+	      if (balanceFactorRight === BALANCEFACTOR.SLIGHTLY_UNBALANCED_LEFT) {
+	        return this.rotationRL(node.right);
+	      }
+	    }
+
+	    return node;
 	  }
 
 	}

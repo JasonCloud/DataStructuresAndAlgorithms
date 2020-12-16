@@ -6,7 +6,7 @@
  * @LastEditTime: 2020/11/20
  */
 import LinkedList from "./LinkedList";
-import {defaultEquals} from "./util";
+import {defaultEquals} from "../util";
 import {Node} from "./Node";
 
 export default class CircularLinkedList extends LinkedList{

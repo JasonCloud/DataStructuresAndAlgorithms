@@ -15,6 +15,9 @@
 <script src="./dist/Dictionary.js"></script>
 <script src="./dist/BinarySearchTree.js"></script>
 <script src="./dist/AVLTree.js"></script>
+<script src="./dist/MinHeap.js"></script>
+<script src="./dist/MaxHeap.js"></script>
+<script src="./dist/heapSort.js"></script>
 <script>
     const linkedList = new LinkedList();
 	linkedList.append({val:0});
@@ -52,12 +55,15 @@
     tree.prevOrderTraverse((key) => arr.push(key));
     console.log(arr, '先序搜索：prevOrderTraverse；搜索二叉树，退化成一个线性链表');
     const avltree = new AVLTree();
-    avltree.insert(1);
-    avltree.insert(2);
-    avltree.insert(3);
+    avltree.insert(10);
+    avltree.insert(8);
+    avltree.insert(12);
     avltree.insert(4);
+    avltree.insert(9);
+    avltree.insert(11);
+    avltree.insert(13);
+    avltree.insert(3);
     avltree.insert(5);
-    avltree.insert(6);
     // avltree.insert(7);
     // avltree.insert(8);
     // avltree.insert(9);
@@ -70,5 +76,13 @@
     let avlarr = [];
     avltree.prevOrderTraverse((key) => avlarr.push(key));
     console.log(avlarr, '先序搜索：prevOrderTraverse；平衡将线性化树重新平衡为树结构');
+    const minHeap = new MinHeap();
+    for(let i = 1; i < 10; i++) {
+    	minHeap.insert(i)
+    }
+    const maxHeap = new MaxHeap();
+    for(let i = 1; i < 10; i++) {
+	    maxHeap.insert(i)
+    }
 </script>
 </html>

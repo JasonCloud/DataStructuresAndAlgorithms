@@ -5,7 +5,7 @@
  * @LastEditors:
  * @LastEditTime: 2020/11/18
  */
-import { defaultEquals } from "./util.js";
+import { defaultEquals } from "../util.js";
 import { Node } from './Node.js'
 
 export default class LinkedList {

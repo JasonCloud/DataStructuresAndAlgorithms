@@ -6,25 +6,15 @@
  * @LastEditTime: 2020/12/8
  */
 import BinarySearchTre from './BinarySearchTree'
-import {defaultCompare} from "./util";
+import {defaultCompare, COMPARE, BALANCEFACTOR} from "../util";
 import {TreeNode} from "./TreeNode";
-const COMPARE = {
-	EQUAL: 0,
-	LESS_THAN: -1,
-	BIGGER_THAN: 1
-}
-const BALANCEFACTOR = {
-	UNBALANCED_RIGHT: 1,
-	SLIGHTLY_UNBALANCED_RIGHT: 2,
-	BALANCED: 3,
-	SLIGHTLY_UNBALANCED_LEFT: 4,
-	UNBALANCED_LEFT: 5
-};
+
 export default class AVLTree extends BinarySearchTre{
 	constructor(compareFn = defaultCompare ) {
 		super(compareFn);
 		this.compareFn = compareFn;
 		this.root = null;
+		this.count = null;
 	}
 	getNodeHeight(node) {
 		if (!node) {
@@ -67,6 +57,9 @@ export default class AVLTree extends BinarySearchTre{
 		node.right = this.rotationLL(node.right); // 先将失去平衡节点的右子树进行左旋转
 		return this.rotationRR(node);  // 再对整个失去平衡的树进行右旋转
 	}
+	insert(key) {
+		this.root = this.insertNode(this.root, key);
+	}
 	insertNode(node, key) {
 		if (!node) { // 说明已经到了叶节点没有下一个节点了，这个时候可以创建一个新节点作为上一个节点的子节点
 			return new TreeNode(key);
@@ -99,5 +92,25 @@ export default class AVLTree extends BinarySearchTre{
 		if (!node) {
 			return node; // 不需要调整平衡；
 		}
+		const balanceFactor = this.getBalanceFactor(node);
+		if(balanceFactor === BALANCEFACTOR.UNBALANCED_LEFT) {
+			const balanceFactorLeft = this.getBalanceFactor(node.left);
+			if(balanceFactorLeft === BALANCEFACTOR.BALANCED || balanceFactorLeft === BALANCEFACTOR.SLIGHTLY_UNBALANCED_LEFT) {
+				return this.rotationLL(node);
+			}
+			if (balanceFactorLeft === BALANCEFACTOR.SLIGHTLY_UNBALANCED_RIGHT) {
+				return this.rotationLR(node.left);
+			}
+		}
+		if(balanceFactor === BALANCEFACTOR.UNBALANCED_RIGHT) {
+			const balanceFactorRight = this.getBalanceFactor(node.right);
+			if(balanceFactorRight === BALANCEFACTOR.BALANCED || balanceFactorRight === BALANCEFACTOR.SLIGHTLY_UNBALANCED_RIGHT) {
+				return this.rotationRR(node);
+			}
+			if(balanceFactorRight === BALANCEFACTOR.SLIGHTLY_UNBALANCED_LEFT) {
+				return this.rotationRL(node.right);
+			}
+		}
+		return node;
 	}
 }

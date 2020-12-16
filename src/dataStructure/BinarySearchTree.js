@@ -5,14 +5,9 @@
  * @LastEditors:
  * @LastEditTime: 2020/12/2
  */
-import {defaultCompare} from "./util";
+import {defaultCompare, COMPARE} from "../util";
 import {TreeNode} from "./TreeNode";
 
-const COMPARE = {
-	EQUAL: 0,
-	LESS_THAN: -1,
-	BIGGER_THAN: 1
-}
 export default class BinarySearchTree {
 	constructor(compareFn = defaultCompare) {
 		this.compareFn = compareFn;

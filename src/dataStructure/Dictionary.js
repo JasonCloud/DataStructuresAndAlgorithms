@@ -5,7 +5,7 @@
  * @LastEditors:
  * @LastEditTime: 2020/11/28
  */
-import {keyToString} from "./util";
+import {keyToString} from "../util";
 class ValueObj {
 	constructor(key, val) {
 		this.key = key;

@@ -6,7 +6,7 @@
  * @LastEditTime: 2020/11/19
  */
 import LinkedList from "./LinkedList";
-import {defaultEquals} from "./util";
+import {defaultEquals} from "../util";
 import { DoubleNode } from "./DoubleNode";
 
 export default class DoubleLinkedList extends LinkedList{

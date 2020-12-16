@@ -8,10 +8,20 @@
 export const defaultEquals = function (a, b) {
 	return a === b
 }
-const COMPARE = {
+export const COMPARE = {
 	EQUAL: 0,
 	LESS_THAN: -1,
 	BIGGER_THAN: 1
+}
+export const BALANCEFACTOR = {
+	UNBALANCED_RIGHT: 1,
+	SLIGHTLY_UNBALANCED_RIGHT: 2,
+	BALANCED: 3,
+	SLIGHTLY_UNBALANCED_LEFT: 4,
+	UNBALANCED_LEFT: 5
+};
+export function reverseCompare(compareFn) {
+	return (a, b) => compareFn(b, a);
 }
 export function defaultCompare(a, b) {
 	if (a === b) {
@@ -31,4 +41,7 @@ export function	keyToString(str) {
 		return str.toString();
 	}
 	return JSON.stringify(str)
+}
+export function swap(arr, index1, index2) {
+	[arr[index1], arr[index2]] = [arr[index2], arr[index1]];
 }

@@ -5,7 +5,7 @@
  * @LastEditors:
  * @LastEditTime: 2020/11/26
  */
-import {keyToString} from "./util";
+import {keyToString} from "../util";
 
 export default class MySet {
 	constructor() {

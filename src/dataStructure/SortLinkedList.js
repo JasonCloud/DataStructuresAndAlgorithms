@@ -6,7 +6,7 @@
  * @LastEditTime: 2020/11/26
  */
 import LinkedList from "./LinkedList";
-import {defaultEquals, defaultCompare} from "./util";
+import {defaultEquals, defaultCompare} from "../util";
 import {Node} from "./Node";
 export default class SortLinkedList extends LinkedList{
 	constructor(equal = defaultEquals, defaultFn = defaultCompare){
