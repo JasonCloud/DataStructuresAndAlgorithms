@@ -11,24 +11,43 @@ export default class Graph {
 	constructor(isDir = false) {
 		this.isDir = isDir;
 		this.vertices = [];
-		this.adList = new Dictionary();
+		this.adjList = new Dictionary();
 	}
 	addVertex(v) {
 		if(!this.vertices.includes(v)) {
 			this.vertices.push(v);
-			this.adList.set(v, []);
+			this.adjList.set(v, []);
 		}
 	}
 	addEdge(v, w) {
-		if (!this.adList.get(v)) {
+		if (!this.adjList.get(v)) {
 			this.addVertex(v);
 		}
-		if (!this.adList.get(w)) {
+		if (!this.adjList.get(w)) {
 			this.addVertex(w);
 		}
-		this.adList.get(v).push(w);
+		this.adjList.get(v).push(w);
 		if (!this.isDir) {
-			this.adList.get(w).push(v);
+			this.adjList.get(w).push(v);
 		}
+	}
+	getVertices() {
+		return this.vertices;
+	}
+	getadjList() {
+		return this.adjList;
+	}
+	toString() {
+		let str = '';
+		for (let i = 0; i < this.vertices.length; i++) {
+			let vertice = this.vertices[i]
+			str += `${vertice} --> `;
+			let adjList = this.adjList.get(vertice);
+			for (let j = 0; j < adjList.length; j++) {
+				str += ` ${adjList[j]}`
+			}
+			str +='\n'
+		}
+		return str;
 	}
 }
