@@ -1077,6 +1077,10 @@
 	    return this.vertices;
 	  }
 
+	  length() {
+	    return this.vertices.length;
+	  }
+
 	  getadjList() {
 	    return this.adjList;
 	  }
@@ -1404,6 +1408,49 @@
 	/**
 	 * @Description:
 	 * @Author:  wuenyou
+	 * @Date: 2020/12/22
+	 * @LastEditors:
+	 * @LastEditTime: 2020/12/22
+	 */
+	function countingSort(array) {
+	  if (array.length < 2) {
+	    return array;
+	  }
+
+	  let maxVal = findMaxValue(array);
+	  let counts = new Array(maxVal + 1);
+	  array.forEach(ele => {
+	    if (!counts[ele]) {
+	      counts[ele] = 0;
+	    }
+
+	    counts[ele]++;
+	  });
+	  let sortedIndex = 0;
+	  counts.forEach((count, i) => {
+	    while (count > 0) {
+	      array[sortedIndex++] = i;
+	      count--;
+	    }
+	  });
+	  return array;
+	}
+
+	const findMaxValue = array => {
+	  let max = array[0];
+
+	  for (let i = 1; i < array.length; i++) {
+	    if (array[i] > max) {
+	      max = array[i];
+	    }
+	  }
+
+	  return max;
+	};
+
+	/**
+	 * @Description:
+	 * @Author:  wuenyou
 	 * @Date: 2020/12/18
 	 * @LastEditors:
 	 * @LastEditTime: 2020/12/18
@@ -1539,7 +1586,38 @@
 	  }
 
 	  console.log(str);
-	}
+	} // console.log(bubbleSort([9,8,7,6,5,4,3,2,1]));
+
+
+	const sortArr = [9, 8, 7, 6, 5, 4, 3, 2, 1]; // console.time('构建数组')
+	// for (let i = 1; i < 1000;i++) {
+	// 	if(Math.random() < 0.5) {
+	// 		sortArr.push(i);
+	// 	} else {
+	// 		sortArr.unshift(i);
+	// 	}
+	// }
+	// console.timeEnd('构建数组'); // 1395.03076171875ms
+	// console.time('冒泡排序');
+	// // console.log(bubbleSort(sortArr));
+	// bubbleSort(sortArr)
+	// console.timeEnd('冒泡排序'); // 冒泡排序: 22628.14990234375ms
+	// console.time('选择排序');
+	// // console.log(insertionSort(sortArr));
+	// insertionSort(sortArr)
+	// console.timeEnd('选择排序');// 选择排序:  15373.854736328125ms
+	// console.time('归并排序');
+	// // console.log(mergeSort(sortArr));
+	// mergeSort(sortArr)
+	// console.timeEnd('归并排序'); // 归并排序:90.333984375ms
+	// console.time('快速排序');
+	// // console.log(quickSort(sortArr));
+	// quickSort(sortArr)
+	// console.timeEnd('快速排序'); //快速排序: 76.9599609375ms
+
+	console.time('计数排序');
+	console.log(countingSort(sortArr));
+	console.timeEnd('计数排序');
 
 })));
 //# sourceMappingURL=main.js.map

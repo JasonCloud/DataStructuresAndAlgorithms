@@ -19,6 +19,11 @@ import Graph from "./dataStructure/Graph";
 import {BFS, breadthFirstSearch} from "./algorithms/grapth/breadthFirstSearch";
 import Stack from "./dataStructure/Stack";
 import {depthFirstSearch, DFS} from "./algorithms/grapth/depthFirstSearch";
+import {bubbleSort} from "./algorithms/sorting/bubbleSort";
+import {insertionSort} from "./algorithms/sorting/insertionSort";
+import {mergeSort} from "./algorithms/sorting/mergeSort";
+import {quickSort} from "./algorithms/sorting/quickSort";
+import {countingSort} from "./algorithms/sorting/countingSort";
 
 const linkedList = new LinkedList();
 linkedList.append({val:0});
@@ -133,3 +138,34 @@ for (let i = 1; i < myVertices.length; i++ ) {
 	}
 	console.log(str);
 }
+// console.log(bubbleSort([9,8,7,6,5,4,3,2,1]));
+const sortArr = [9,8,7,6,5,4,3,2,1];
+// console.time('构建数组')
+// for (let i = 1; i < 1000;i++) {
+// 	if(Math.random() < 0.5) {
+// 		sortArr.push(i);
+// 	} else {
+// 		sortArr.unshift(i);
+// 	}
+// }
+// console.timeEnd('构建数组'); // 1395.03076171875ms
+// console.time('冒泡排序');
+// // console.log(bubbleSort(sortArr));
+// bubbleSort(sortArr)
+// console.timeEnd('冒泡排序'); // 冒泡排序: 22628.14990234375ms
+// console.time('选择排序');
+// // console.log(insertionSort(sortArr));
+// insertionSort(sortArr)
+// console.timeEnd('选择排序');// 选择排序:  15373.854736328125ms
+// console.time('归并排序');
+// // console.log(mergeSort(sortArr));
+// mergeSort(sortArr)
+// console.timeEnd('归并排序'); // 归并排序:90.333984375ms
+// console.time('快速排序');
+// // console.log(quickSort(sortArr));
+// quickSort(sortArr)
+// console.timeEnd('快速排序'); //快速排序: 76.9599609375ms
+
+console.time('计数排序');
+console.log(countingSort(sortArr));;
+console.timeEnd('计数排序');

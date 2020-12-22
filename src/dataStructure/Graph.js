@@ -34,6 +34,9 @@ export default class Graph {
 	getVertices() {
 		return this.vertices;
 	}
+	length() {
+		return this.vertices.length;
+	}
 	getadjList() {
 		return this.adjList;
 	}
