@@ -5,7 +5,7 @@
  * @LastEditors:
  * @LastEditTime: 2021/1/17
  */
-import Stack from "./StackArr";
+import Stack from "../../dataStructure/StackArr";
 
 const startHtmlReg = /^<([^>|\/]+)>/i;
 const endHtmlReg = /^<\/([^>]+)>/i;

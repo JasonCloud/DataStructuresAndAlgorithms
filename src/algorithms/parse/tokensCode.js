@@ -5,7 +5,7 @@
  * @LastEditors:
  * @LastEditTime: 2021/1/20
  */
-import Queue from "./QueueArr";
+import Queue from "../../dataStructure/QueueArr";
 
 export const tokensGren = (expr) => {
 	// 生成词法解析队列；

@@ -5,7 +5,7 @@
  * @LastEditors:
  * @LastEditTime: 2021/1/20
  */
-import Stack from "./StackArr";
+import Stack from "../../dataStructure/StackArr";
 
 // 操作符
 const precedenceMap = {
