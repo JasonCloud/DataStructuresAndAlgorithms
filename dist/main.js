@@ -1408,45 +1408,129 @@
 	/**
 	 * @Description:
 	 * @Author:  wuenyou
+	 * @Date: 2020/12/21
+	 * @LastEditors:
+	 * @LastEditTime: 2020/12/21
+	 */
+	const quickSort = (array, compareFn = defaultCompare) => {
+	  return quick(array, 0, array.length - 1, compareFn);
+	};
+
+	const quick = (array, left, right, compareFn) => {
+	  let idx;
+
+	  if (array.length > 1) {
+	    idx = partition(array, left, right, compareFn);
+
+	    if (left < idx - 1) {
+	      quick(array, left, idx - 1, compareFn);
+	    }
+
+	    if (idx < right) {
+	      quick(array, idx, right, compareFn);
+	    }
+	  }
+
+	  return array;
+	};
+
+	const partition = (array, left, right, compareFn) => {
+	  let pivot = array[Math.floor((left + right) / 2)];
+	  let i = left;
+	  let j = right;
+
+	  while (i <= j) {
+	    while (compareFn(array[i], pivot) === COMPARE.LESS_THAN) {
+	      i++;
+	    }
+
+	    while (compareFn(array[j], pivot) === COMPARE.BIGGER_THAN) {
+	      j--;
+	    }
+
+	    if (i <= j) {
+	      swap(array, i, j);
+	      i++;
+	      j--;
+	    }
+	  }
+
+	  return i;
+	};
+
+	/**
+	 * @Description:
+	 * @Author:  wuenyou
 	 * @Date: 2020/12/22
 	 * @LastEditors:
 	 * @LastEditTime: 2020/12/22
 	 */
-	function countingSort(array) {
-	  if (array.length < 2) {
-	    return array;
-	  }
+	const binarySearch = (array, value, compareFn = defaultCompare) => {
+	  let sortedArray = quickSort(array);
+	  let startIdx = 0;
+	  let endIdx = sortedArray.length - 1;
+	  let result = -1;
 
-	  let maxVal = findMaxValue(array);
-	  let counts = new Array(maxVal + 1);
-	  array.forEach(ele => {
-	    if (!counts[ele]) {
-	      counts[ele] = 0;
-	    }
+	  while (endIdx > startIdx) {
+	    let midIdx = Math.floor((startIdx + endIdx) / 2);
+	    let midVal = sortedArray[midIdx];
 
-	    counts[ele]++;
-	  });
-	  let sortedIndex = 0;
-	  counts.forEach((count, i) => {
-	    while (count > 0) {
-	      array[sortedIndex++] = i;
-	      count--;
-	    }
-	  });
-	  return array;
-	}
-
-	const findMaxValue = array => {
-	  let max = array[0];
-
-	  for (let i = 1; i < array.length; i++) {
-	    if (array[i] > max) {
-	      max = array[i];
+	    if (compareFn(value, midVal) === COMPARE.LESS_THAN) {
+	      endIdx = midIdx - 1;
+	    } else if (compareFn(value, midVal) === COMPARE.BIGGER_THAN) {
+	      startIdx = midIdx + 1;
+	    } else {
+	      return midIdx;
 	    }
 	  }
 
-	  return max;
+	  return result;
 	};
+
+	/**
+	 * @Description:
+	 * @Author:  wuenyou
+	 * @Date: 2020/12/23
+	 * @LastEditors:
+	 * @LastEditTime: 2020/12/23
+	 */
+	const minCoinChange = (coins, amount) => {
+	  const cache = [];
+
+	  const makeChange = value => {
+	    if (value <= 0) {
+	      return [];
+	    }
+
+	    if (cache[value]) {
+	      return cache[value];
+	    }
+
+	    let min = [];
+	    let newMin;
+	    let newAmount;
+
+	    for (let i = 0; i < coins.length; i++) {
+	      let coin = coins[i];
+	      newAmount = value - coin;
+
+	      if (newAmount >= 0) {
+	        newMin = makeChange(newAmount);
+	      }
+
+	      if (newAmount >= 0 && (newMin.length < min.length - 1 || !min.length) && (newMin.length || !newAmount)) {
+	        min = [coin].concat(newMin);
+	        console.log('min', min, 'newMin', newMin);
+	      }
+	    }
+
+	    return cache[value] = min;
+	  };
+
+	  let res = makeChange(amount);
+	  console.log(cache, '=====cache');
+	  return res;
+	}; //console.log(minCoinChange([2,4,13], 7))
 
 	/**
 	 * @Description:
@@ -1614,10 +1698,14 @@
 	// // console.log(quickSort(sortArr));
 	// quickSort(sortArr)
 	// console.timeEnd('快速排序'); //快速排序: 76.9599609375ms
+	//
+	// console.time('计数排序');
+	// console.log(countingSort(sortArr));;
+	// console.timeEnd('计数排序');
 
-	console.time('计数排序');
-	console.log(countingSort(sortArr));
-	console.timeEnd('计数排序');
+	console.log(binarySearch(sortArr, 5));
+	console.log(binarySearch(sortArr, 88));
+	console.log(minCoinChange([2, 4, 13], 7));
 
 })));
 //# sourceMappingURL=main.js.map

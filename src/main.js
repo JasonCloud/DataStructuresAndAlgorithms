@@ -24,6 +24,8 @@ import {insertionSort} from "./algorithms/sorting/insertionSort";
 import {mergeSort} from "./algorithms/sorting/mergeSort";
 import {quickSort} from "./algorithms/sorting/quickSort";
 import {countingSort} from "./algorithms/sorting/countingSort";
+import {binarySearch} from "./algorithms/sorting/binarySearch";
+import {minCoinChange} from "./algorithms/dynamicPrograming/minCoinChange";
 
 const linkedList = new LinkedList();
 linkedList.append({val:0});
@@ -165,7 +167,10 @@ const sortArr = [9,8,7,6,5,4,3,2,1];
 // // console.log(quickSort(sortArr));
 // quickSort(sortArr)
 // console.timeEnd('快速排序'); //快速排序: 76.9599609375ms
-
-console.time('计数排序');
-console.log(countingSort(sortArr));;
-console.timeEnd('计数排序');
+//
+// console.time('计数排序');
+// console.log(countingSort(sortArr));;
+// console.timeEnd('计数排序');
+console.log(binarySearch(sortArr, 5));
+console.log(binarySearch(sortArr, 88));
+console.log(minCoinChange([2,4,13], 7))
